@@ -1,10 +1,12 @@
-version: "3"
+version: "3.6"
 services:
-  discord-twitter-webhooks:
-    image: thelovinator/discord-twitter-webhooks
+  dqxtools_twitter_webhook:
+    image: dqxtools_twitter_webhook
+    container_name: dqxtools_twitter_webhook
+    networks:
+      dqxtools:
     env_file:
       - .env
-    container_name: discord-twitter-webhooks
     environment:
       - WEBHOOK_URL=${WEBHOOK_URL}
       - CONSUMER_KEY=${CONSUMER_KEY}
@@ -14,4 +16,10 @@ services:
       - USERS_TO_FOLLOW=${USERS_TO_FOLLOW}
       - LOG_LEVEL=${LOG_LEVEL}
       - TWITTER_IMAGE_COLLAGE_API=${TWITTER_IMAGE_COLLAGE_API}
-    restart: unless-stopped
+      - DEEPL_FREE_API_KEY=${DEEPL_FREE_API_KEY}
+    restart: always
+
+networks:
+  dqxtools:
+    name: dqxtools
+    external: true

@@ -22,6 +22,7 @@ from discord_twitter_webhooks.settings import (
     user_list_retweeted_split,
     user_list_retweets_split,
     webhook_url,
+    deepl_free_api_key
 )
 
 logger = logging
@@ -225,11 +226,22 @@ def send_embed_webhook(avatar: str, tweet, link_list, text: str, webhook: str = 
 
     logger.info("Webhook posted.")
 
+def deepl_translate(text):
+    '''Uses DeepL Translate to translate text to the specified language.'''
+    api_url = 'https://api-free.deepl.com/v2/translate'
+
+    payload = {'auth_key': deepl_free_api_key, 'text': text, 'target_lang': 'en'}
+    r = requests.post(api_url, data=payload)
+    translated_text = r.content
+
+    return json.loads(translated_text)['translations'][0]['text']
+
 
 def main(tweet):
     logger.debug(f"Raw tweet before any modifications: {tweet}")
     text = get_text(tweet)
-    media_links, text_media_links = get_media_links_and_remove_url(tweet, text)
+    translated_text = deepl_translate(text)
+    media_links, text_media_links = get_media_links_and_remove_url(tweet, translated_text)
     avatar = get_avatar_url(tweet)
     twitter_card_image = get_meta_image(get_urls(tweet))
     unescaped_text = html.unescape(text_media_links)

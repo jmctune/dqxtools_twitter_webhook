@@ -2,7 +2,8 @@
 # don't need them when run the bot so we can selectively copy artifacts
 # from this stage (compile-image) to second one (runtime-image), leaving 
 # behind everything we don't need in the final build. 
-FROM python:3.9-slim AS compile-image
+#FROM python:3.9-slim AS compile-image
+FROM python:3.9-slim
 
 # We don't want apt-get to interact with us,
 # and we want the default answers to be used for all questions.
