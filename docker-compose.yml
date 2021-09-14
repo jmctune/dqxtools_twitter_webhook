@@ -1,12 +1,11 @@
 version: "3.6"
 services:
-  dqxtools_twitter_webhook:
+  dqxtools_twitter_dqx:
     image: dqxtools_twitter_webhook
-    container_name: dqxtools_twitter_webhook
+    container_name: dqxtools_twitter_dqx
     networks:
       dqxtools:
-    env_file:
-      - .env
+    env_file: .dqx.env
     environment:
       - WEBHOOK_URL=${WEBHOOK_URL}
       - CONSUMER_KEY=${CONSUMER_KEY}
@@ -16,7 +15,43 @@ services:
       - USERS_TO_FOLLOW=${USERS_TO_FOLLOW}
       - LOG_LEVEL=${LOG_LEVEL}
       - TWITTER_IMAGE_COLLAGE_API=${TWITTER_IMAGE_COLLAGE_API}
-      - DEEPL_FREE_API_KEY=${DEEPL_FREE_API_KEY}
+      - LIBRETRANSLATE_URL=${LIBRETRANSLATE_URL}
+    restart: always
+
+  dqxtools_twitter_seven_wonders:
+    image: dqxtools_twitter_webhook
+    container_name: dqxtools_twitter_seven_wonders
+    networks:
+      dqxtools:
+    env_file: .seven_wonders.env
+    environment:
+      - WEBHOOK_URL=${WEBHOOK_URL}
+      - CONSUMER_KEY=${CONSUMER_KEY}
+      - CONSUMER_SECRET=${CONSUMER_SECRET}
+      - ACCESS_TOKEN=${ACCESS_TOKEN}
+      - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
+      - USERS_TO_FOLLOW=${USERS_TO_FOLLOW}
+      - LOG_LEVEL=${LOG_LEVEL}
+      - TWITTER_IMAGE_COLLAGE_API=${TWITTER_IMAGE_COLLAGE_API}
+      - LIBRETRANSLATE_URL=${LIBRETRANSLATE_URL}
+    restart: always
+
+  dqxtools_twitter_wandering_npcs:
+    image: dqxtools_twitter_webhook
+    container_name: dqxtools_twitter_wandering_npcs
+    networks:
+      dqxtools:
+    env_file: .wandering_npcs.env
+    environment:
+      - WEBHOOK_URL=${WEBHOOK_URL}
+      - CONSUMER_KEY=${CONSUMER_KEY}
+      - CONSUMER_SECRET=${CONSUMER_SECRET}
+      - ACCESS_TOKEN=${ACCESS_TOKEN}
+      - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
+      - USERS_TO_FOLLOW=${USERS_TO_FOLLOW}
+      - LOG_LEVEL=${LOG_LEVEL}
+      - TWITTER_IMAGE_COLLAGE_API=${TWITTER_IMAGE_COLLAGE_API}
+      - LIBRETRANSLATE_URL=${LIBRETRANSLATE_URL}
     restart: always
 
 networks:

@@ -14,9 +14,8 @@ consumer_secret = os.environ["CONSUMER_SECRET"]
 access_token = os.environ["ACCESS_TOKEN"]
 access_token_secret = os.environ["ACCESS_TOKEN_SECRET"]
 
-# DeepL Free API key
-#https://www.deepl.com/pro/change-plan?cta=menu-pro/#developer
-deepl_free_api_key = os.environ["DEEPL_FREE_API_KEY"]
+# Libretranslate URL
+libretranslate_url = os.environ["LIBRETRANSLATE_URL"]
 
 # https://tweeterid.com/
 users_to_follow = os.environ["USERS_TO_FOLLOW"]
